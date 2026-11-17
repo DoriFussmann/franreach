@@ -4,17 +4,13 @@ import {
   ArrowRight,
   BarChart3,
   BrainCircuit,
-  CheckCircle2,
   ChevronDown,
-  CircleDot,
   Compass,
   Database,
-  Layers3,
   Menu,
   Network,
   Radar,
   Sparkles,
-  Target,
   Workflow,
   X,
   Zap,
@@ -33,11 +29,11 @@ const hero = {
 
 const HERO_WORDS = [
   { word: "grow", color: "#82bcff" },
-  { word: "operate", color: "#ffc569" },
+  { word: "build", color: "#ffc569" },
   { word: "expand", color: "#82d9ca" },
 ] as const;
 
-const heroPrefix = "help you";
+const heroPrefix = "help your franchise";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(
