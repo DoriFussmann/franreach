@@ -3,7 +3,7 @@ import LegalPage, { EmailLink, LegalSection } from "@/pages/LegalPage";
 
 export default function Terms() {
   return (
-    <LegalPage title="Terms of Use" documentTitle="Terms of Use | FranchiseReach">
+    <LegalPage title="Terms of Use" documentTitle="Terms of Use | FranReach">
       <p>
         These Terms of Use govern your use of this website (the "Site"), operated by InMarketLabs, LLC ("FranchiseReach," "we," "us"). By using the Site, you agree to these terms. If you do not agree, please do not use the Site.
       </p>
