@@ -2,7 +2,7 @@ import LegalPage, { EmailLink, LegalSection } from "@/pages/LegalPage";
 
 export default function Privacy() {
   return (
-    <LegalPage title="Privacy Policy" documentTitle="Privacy Policy | FranchiseReach">
+    <LegalPage title="Privacy Policy" documentTitle="Privacy Policy | FranReach">
       <p>
         This Privacy Policy explains how InMarketLabs, LLC ("FranchiseReach," "we," "us") handles information in connection with this website (the "Site"). It covers this Site only. Data we process on behalf of clients under service agreements is governed by those agreements.
       </p>
