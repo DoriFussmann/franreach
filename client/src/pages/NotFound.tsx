@@ -3,7 +3,7 @@ import { Link } from "wouter";
 
 export default function NotFound() {
   useEffect(() => {
-    document.title = "Page not found | FranchiseReach";
+    document.title = "Page not found | FranReach";
   }, []);
 
   return (
