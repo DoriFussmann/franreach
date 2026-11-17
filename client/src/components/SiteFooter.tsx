@@ -2,9 +2,10 @@ import { Link } from "wouter";
 import { Logo } from "@/components/Brand";
 
 export const navItems = [
-  ["Model", "/#method"],
-  ["Services", "/#capabilities"],
-  ["Who it's for", "/#audiences"],
+  ["How it works", "/#method"],
+  ["Capabilities", "/#capabilities"],
+  ["Channels", "/#channels"],
+  ["Who we serve", "/#audiences"],
   ["FAQ", "/#faq"],
 ] as const;
 
@@ -18,7 +19,7 @@ export default function SiteFooter({ logoHref = "#top" }: { logoHref?: string })
           <div>
             <Logo href={logoHref} />
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/45">
-              Media execution powered by current buying signals, nightly audience updates, and real-time reporting.
+              Intent-driven audience intelligence and connected franchise development, from first touchpoint to qualified interest.
             </p>
             <p className="mt-4 text-sm leading-6 text-white/45">
               Contact:{" "}
@@ -34,18 +35,14 @@ export default function SiteFooter({ logoHref = "#top" }: { logoHref?: string })
               </a>
             ))}
             <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="transition-colors hover:text-white">
-              Strategy session
+              Talk franchise growth
             </a>
-            <Link href="/privacy" className="transition-colors hover:text-white">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="transition-colors hover:text-white">
-              Terms of Use
-            </Link>
+            <Link href="/privacy" className="transition-colors hover:text-white">Privacy Policy</Link>
+            <Link href="/terms" className="transition-colors hover:text-white">Terms of Use</Link>
           </div>
         </div>
         <div className="flex flex-col gap-3 pt-7 font-mono text-[9px] uppercase tracking-[0.16em] text-white/30 sm:flex-row sm:items-center sm:justify-between">
-          <span>FranchiseReach · Intent data to media execution</span>
+          <span>FranReach · Franchise development, intelligently orchestrated</span>
           <span>© {new Date().getFullYear()} InMarketLabs, LLC</span>
         </div>
       </div>
