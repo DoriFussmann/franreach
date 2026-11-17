@@ -3,14 +3,19 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   BarChart3,
+  BrainCircuit,
+  CheckCircle2,
   ChevronDown,
+  CircleDot,
   Compass,
-  Crosshair,
   Database,
+  Layers3,
   Menu,
+  Network,
   Radar,
   Sparkles,
   Target,
+  Workflow,
   X,
   Zap,
 } from "lucide-react";
@@ -20,20 +25,19 @@ import { Logo } from "@/components/Brand";
 const BOOKING_URL = "https://cal.com/dori-fussmann-lqbqlb/30min";
 
 const hero = {
-  eyebrow: "Audience intelligence + activation",
-  lead: "Know where demand is moving.",
-  body: "FranchiseReach helps emerging brands find, understand, and reach qualified buyers sooner—combining market intelligence with coordinated media execution.",
+  eyebrow: "Franchise development, intelligently orchestrated",
+  lead: "Find the people who will",
+  body: "FranReach helps franchise brands identify, engage and deliver qualified prospective operators through intent-driven audience intelligence, AI-powered personalization and coordinated omnichannel campaigns.",
   image: "/images/hero.webp",
 };
 
 const HERO_WORDS = [
-  { word: "intent", color: "#155eef" },
-  { word: "timing", color: "#2478ff" },
-  { word: "precision", color: "#12998c" },
-  { word: "confidence", color: "#ff6638" },
+  { word: "grow", color: "#82bcff" },
+  { word: "operate", color: "#ffc569" },
+  { word: "expand", color: "#82d9ca" },
 ] as const;
 
-const heroPrefix = "Move with";
+const heroPrefix = "help you";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(
@@ -73,12 +77,10 @@ function HeroTypedWord({
 
   useEffect(() => {
     if (reducedMotion) return;
-
     const current = HERO_WORDS[index].word;
     const atEnd = !deleting && count === current.length;
     const atStart = deleting && count === 0;
     const delay = atEnd ? 1900 : atStart ? 280 : deleting ? 40 : 72;
-
     const timeout = window.setTimeout(() => {
       if (atEnd) {
         setDeleting(true);
@@ -91,7 +93,6 @@ function HeroTypedWord({
       }
       setCount((value) => value + (deleting ? -1 : 1));
     }, delay);
-
     return () => window.clearTimeout(timeout);
   }, [count, deleting, index, reducedMotion]);
 
@@ -100,15 +101,12 @@ function HeroTypedWord({
 
   return (
     <span className="hero-typed-word">
-      <span className="hero-typed-word-sizer" aria-hidden="true">
-        {sizer}.
-      </span>
+      <span className="hero-typed-word-sizer" aria-hidden="true">{sizer}.</span>
       <span className="hero-typed-word-live">
         <span style={{ color: current.color }}>
           {current.word.slice(0, count)}
           {!reducedMotion && <span className="hero-typed-caret" aria-hidden="true" />}
-        </span>
-        .
+        </span>.
       </span>
     </span>
   );
@@ -118,76 +116,108 @@ const capabilities = [
   {
     number: "01",
     icon: Radar,
-    title: "Audience intelligence",
-    kicker: "Intent + propensity",
+    title: "Intent-led audience intelligence",
+    kicker: "Find the right people",
     description:
-      "Combine people actively showing intent with propensity-based audiences to create a more complete and current view of likely buyers.",
-    points: ["High-intent buying signals", "Propensity-based audiences", "Nightly audience refreshes"],
+      "We work with specialist data partners to analyze signals across millions of websites, helping identify people whose interests and digital behavior align with the operator profile your brand needs.",
+    points: ["Brand-specific audience criteria", "Behavioral and interest signals", "Relevant operator profiles"],
   },
   {
     number: "02",
-    icon: Zap,
-    title: "Coordinated activation",
-    kicker: "Reach buyers in context",
+    icon: BrainCircuit,
+    title: "AI-powered strategy and creative",
+    kicker: "Make the message matter",
     description:
-      "Move prioritized audiences into coordinated programs across the channels your buyers use—managed by one accountable execution team.",
-    points: ["Email and LinkedIn", "Website visitor identification", "Paid search, social, and programmatic"],
+      "We get to know the brand and the audience: what the opportunity offers, what prospective operators care about, and which messages are most likely to resonate. AI strengthens research, personalization and creative production.",
+    points: ["Audience-specific messaging", "Personalized campaign content", "High-quality creative assets"],
   },
   {
     number: "03",
-    icon: BarChart3,
-    title: "Live reporting",
-    kicker: "No black box",
+    icon: Network,
+    title: "Connected omnichannel execution",
+    kicker: "One coordinated experience",
     description:
-      "See spend, delivery, engagement, conversion, and available pipeline signals in real time—with clear decisions attached to the numbers.",
-    points: ["Real-time performance view", "Transparent spend visibility", "Decision-ready optimization notes"],
+      "Email, LinkedIn and selected paid-media channels work together around the same audience. Our proprietary orchestration technology connects the systems, workflows and campaign activity.",
+    points: ["Email and LinkedIn foundation", "Optional social, display and DSP", "Consistent messaging across touchpoints"],
+  },
+  {
+    number: "04",
+    icon: BarChart3,
+    title: "Continuous learning and optimization",
+    kicker: "Improve with every campaign",
+    description:
+      "Connected reporting makes performance visible across channels. We study what works, diagnose what does not, and apply useful learnings and proven practices to improve ongoing campaigns.",
+    points: ["Channel-level analytics and insights", "Recommendations and optimization", "Learning across campaigns"],
   },
 ];
 
 const audiences = [
   {
-    eyebrow: "Primary",
-    title: "Growth-stage brands",
-    body: "Get senior media execution and better audience inputs without building a large in-house buying operation.",
-    image: "/images/audience-growth.webp",
-    alt: "A growing consumer brand team reviewing packaging and market data",
-  },
-  {
-    eyebrow: "Multi-market",
-    title: "Franchise & multi-location",
-    body: "Coordinate national strategy and local activation with clear market-level visibility and fresher demand signals.",
+    eyebrow: "Franchise brands",
+    title: "For the people responsible for growth",
+    body: "CEOs, CMOs and franchise development leaders who need a dependable way to find and engage the right prospective operators in the US market.",
     image: "/images/audience-franchise.webp",
-    alt: "A team reviewing a regional market map",
+    alt: "Franchise team reviewing growth opportunities",
   },
   {
-    eyebrow: "Lean teams",
-    title: "In-house marketing teams",
-    body: "Add a dependable execution desk that works inside your strategy, systems, and reporting rhythm—not around them.",
-    image: "/images/audience-inhouse.webp",
-    alt: "A marketing team collaborating around performance data",
+    eyebrow: "Franchise advisors",
+    title: "For advisors growing brands",
+    body: "A connected franchise development capability for consultants and advisors who help brands expand and need a sophisticated operator-acquisition partner.",
+    image: "/images/audience-growth.webp",
+    alt: "Business advisors collaborating on a growth plan",
   },
+];
+
+const channels = [
+  ["Email", "Targeted, personalized outreach"],
+  ["LinkedIn", "Content, connections and direct engagement"],
+  ["Paid social", "Meta, Instagram and other relevant platforms"],
+  ["Programmatic", "DSP, display and other paid-media placements"],
+];
+
+const process = [
+  [Compass, "Define the operator profile", "We learn the brand, its growth goals, operating model and the criteria that matter. Each program is built around the people the brand actually wants to attract."],
+  [Database, "Discover relevant audiences", "We use specialist data sources and intent indicators to identify people whose interests, experience and profiles align with the agreed criteria."],
+  [Sparkles, "Develop the message and creative", "We shape the opportunity around audience motivations, then create tailored messaging and assets for the channels in the program."],
+  [Workflow, "Coordinate every touchpoint", "We activate the selected channels through one connected operating system, maintaining a consistent proposition as prospects encounter the brand."],
+  [BarChart3, "Learn, optimize and deliver", "We monitor performance, make recommendations, improve the campaign and notify the client when someone who fits the criteria expresses interest."],
 ];
 
 const faqs = [
   {
-    question: "How does pricing work?",
+    question: "What does FranReach deliver?",
     answer:
-      "You buy prepaid credits by card, and we run your campaigns from our ad accounts. A media management fee is added to each purchase and shown before you pay—no surprises on the invoice.",
+      "We identify and engage people who fit the franchise brand's agreed operator profile. When a prospect matches the criteria and expresses interest in learning more, we deliver that qualified interested lead to the brand's development team.",
   },
   {
-    question: "Can I see where my budget goes?",
+    question: "What makes a lead qualified?",
     answer:
-      "Yes. Real-time reporting shows spend by platform, placement, and campaign, so your team always knows what is running and why.",
+      "Qualification is defined with each brand. A qualified lead matches the agreed criteria and has expressed interest in hearing more or engaging with the opportunity. Financial capacity, industry experience and prior franchise ownership are included only when the brand requires them.",
   },
   {
-    question: "How current are the high-intent lists?",
+    question: "Which channels are included?",
     answer:
-      "Priority buying-signal and high-intent lists are refreshed nightly from the approved sources in your program, then organized for activation by audience, account, market, or campaign need.",
+      "The core monthly program includes email outreach and LinkedIn activity, including posts and connection-based outreach. Paid channels such as Meta, Instagram, display and DSP can be added selectively based on the audience and campaign objectives.",
   },
   {
-    question: "What can we see in reporting?",
+    question: "How does media spend work?",
     answer:
-      "You get a real-time view of available spend, delivery, engagement, conversion, and downstream performance signals. We pair the dashboard with plain-language optimization notes so reporting explains what changed and what happens next.",
+      "The core service is a fixed monthly fee. Paid-media budgets are separate and funded by the client, giving each brand control over how much it wants to invest in additional channels.",
+  },
+  {
+    question: "What can we see in the FranReach portal?",
+    answer:
+      "Clients can see campaign analytics and available channel-level performance, along with activity, recommendations, insights and qualified lead notifications. Reporting is connected to the work being managed, not limited to a periodic summary.",
+  },
+  {
+    question: "What happens when someone is interested?",
+    answer:
+      "We notify the client through the portal, directly, or both. The brand's franchise development team then takes over the conversation and manages its own sales and qualification process.",
+  },
+  {
+    question: "How does AI fit into the process?",
+    answer:
+      "AI supports the work across audience research, message development, personalization, creative production and campaign analysis. It works alongside our proprietary technology and experienced team; it is not a substitute for understanding the brand or its prospective operators.",
   },
 ];
 
@@ -208,17 +238,16 @@ export default function Home() {
   const [announcedWord, setAnnouncedWord] = useState<string>(HERO_WORDS[0].word);
 
   useEffect(() => {
-    document.title = "FranchiseReach | Signal-Driven Media Execution";
-    const hash = window.location.hash;
-    if (!hash) return;
-
-    const frame = window.requestAnimationFrame(() => {
-      window.setTimeout(() => {
-        document.getElementById(hash.slice(1))?.scrollIntoView();
-      }, 0);
-    });
-
-    return () => window.cancelAnimationFrame(frame);
+    document.title = "FranReach | Franchise Development, Powered by Intelligence";
+    const description =
+      "FranReach helps franchise brands identify, engage and deliver qualified prospective operators through intent-driven audience intelligence, AI-powered personalization and coordinated omnichannel franchise development.";
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "description");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", description);
   }, []);
 
   return (
@@ -228,15 +257,12 @@ export default function Home() {
           <Logo />
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
             {navItems.map(([label, href]) => (
-              <a key={href} href={href} className="nav-link">
-                {label}
-              </a>
+              <a key={href} href={href} className="nav-link">{label}</a>
             ))}
           </nav>
           <div className="hidden lg:block">
             <a className="button button-small button-light" href={BOOKING_URL} target="_blank" rel="noreferrer">
-              Book a strategy session
-              <ArrowRight className="size-4" />
+              Talk franchise growth <ArrowRight className="size-4" />
             </a>
           </div>
           <button
@@ -263,7 +289,7 @@ export default function Home() {
                 </a>
               ))}
               <a className="button button-primary mt-6 justify-center" href={BOOKING_URL} target="_blank" rel="noreferrer">
-                Book a strategy session <ArrowRight className="size-4" />
+                Talk franchise growth <ArrowRight className="size-4" />
               </a>
             </nav>
           </motion.div>
@@ -271,10 +297,10 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="hero-section relative flex min-h-[900px] flex-col overflow-hidden pt-[120px] lg:min-h-[920px]">
+        <section className="hero-section relative flex min-h-[900px] flex-col overflow-hidden pt-[120px]">
           <img
             src={hero.image}
-            alt="A clear, sunlit view of market activity forming before it becomes crowded"
+            alt="Connected audience intelligence and campaign activity"
             fetchPriority="high"
             className="absolute inset-0 size-full object-cover object-[65%_center]"
           />
@@ -289,9 +315,7 @@ export default function Home() {
             >
               <div className="eyebrow mb-7"><span className="pulse-dot" /> {hero.eyebrow}</div>
               <h1 className="hero-title">
-                <span className="sr-only">
-                  {hero.lead} {heroPrefix} {announcedWord}.
-                </span>
+                <span className="sr-only">{hero.lead} {heroPrefix} {announcedWord}.</span>
                 <span aria-hidden="true">
                   <span className="hero-title-line">{hero.lead}</span>
                   <span className="hero-title-line">
@@ -300,15 +324,13 @@ export default function Home() {
                   </span>
                 </span>
               </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/68 md:text-xl">
-                {hero.body}
-              </p>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/68 md:text-xl">{hero.body}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a className="button button-primary" href={BOOKING_URL} target="_blank" rel="noreferrer">
-                  Book a strategy session <ArrowRight className="size-4" />
+                  Talk franchise growth <ArrowRight className="size-4" />
                 </a>
-                <a className="button button-ghost" href="#capabilities">
-                  See the model <ChevronDown className="size-4" />
+                <a className="button button-ghost" href="#method">
+                  How it works <ChevronDown className="size-4" />
                 </a>
               </div>
             </motion.div>
@@ -318,19 +340,19 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.08 }}
               className="signal-panel hidden lg:block"
-              aria-label="Signal to action workflow"
+              aria-label="FranReach franchise development workflow"
             >
               <div className="flex items-center justify-between border-b border-white/12 px-5 py-4">
                 <div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.26em] text-white/42">Media desk</p>
-                  <p className="mt-1 font-display text-sm text-white">Intent → execution</p>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.26em] text-white/42">FranReach platform</p>
+                  <p className="mt-1 font-display text-sm text-white">Intelligence → engagement</p>
                 </div>
                 <span className="grid size-8 place-items-center rounded-full bg-[var(--electric)]/15 text-[var(--electric)]"><Sparkles className="size-4" /></span>
               </div>
               {[
-                ["01", "Tonight", "Refresh active buying-signal lists"],
-                ["02", "Tomorrow", "Activate priority audience segments"],
-                ["03", "Live", "See spend and performance as it moves"],
+                ["01", "Identify", "Find people who fit the operator profile"],
+                ["02", "Engage", "Coordinate relevant messages across channels"],
+                ["03", "Deliver", "Pass qualified interest to the brand"],
               ].map(([number, title, description], index) => (
                 <div key={number} className="group grid grid-cols-[42px_1fr_24px] items-center gap-3 border-b border-white/10 px-5 py-5 last:border-0">
                   <span className="font-mono text-[10px] text-[var(--electric)]">{number}</span>
@@ -342,13 +364,13 @@ export default function Home() {
                 </div>
               ))}
               <div className="flex items-center gap-2 px-5 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">
-                <span className="size-1.5 rounded-full bg-[var(--signal)]" /> Real-time spend visibility
+                <span className="size-1.5 rounded-full bg-[var(--signal)]" /> One connected operating system
               </div>
             </motion.aside>
           </div>
           <div className="hero-stats relative z-10 hidden border-t border-white/10 bg-[rgba(5,13,25,0.55)] backdrop-blur-md lg:block">
             <div className="container grid grid-cols-4 divide-x divide-white/10">
-              {["Buying-signal audiences", "Managed execution", "Lists updated nightly", "Real-time reporting"].map((item, index) => (
+              {["Intent-led audiences", "AI-powered personalization", "Connected execution", "Qualified operator interest"].map((item, index) => (
                 <div key={item} className="flex items-center gap-3 py-5 pl-5 first:pl-0">
                   <span className="font-mono text-[9px] text-[var(--electric)]">0{index + 1}</span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">{item}</span>
@@ -362,24 +384,22 @@ export default function Home() {
           <div className="container">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
               <div>
-                <div className="section-label text-[var(--cobalt)]">How we work</div>
-                <div className="mt-8 h-px w-full bg-[var(--ink)]/12">
-                  <div className="h-px w-1/3 bg-[var(--cobalt)]" />
-                </div>
+                <div className="section-label text-[var(--cobalt)]">What we do</div>
+                <div className="mt-8 h-px w-full bg-[var(--ink)]/12"><div className="h-px w-1/3 bg-[var(--cobalt)]" /></div>
               </div>
               <div>
-                <h2 className="section-title max-w-4xl">Media execution built on live <em>signal.</em></h2>
+                <h2 className="section-title max-w-4xl">Franchise development is about finding the <em>right operators.</em></h2>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--ink)]/62">
-                  Most programs run on stale audiences and delayed reporting. We activate current buying signals, manage execution end to end, and give your team direct visibility into what is running and why.
+                  Not every interested person is right for every franchise. We start with your brand's operating model, growth goals and ideal operator criteria, then build an acquisition program around the people you actually want to reach.
                 </p>
                 <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-[var(--ink)]/12 md:grid-cols-3">
                   {[
-                    ["MANAGED", "Hands-off execution", "We build, launch, and optimize campaigns from our ad accounts, so your team doesn't have to."],
-                    ["LIVE", "Full spend visibility", "See where every dollar runs, by platform and placement, in real-time reporting."],
-                    ["24H", "Nightly list refresh", "High-intent and buying-signal audiences are updated every night for the next day’s execution."],
+                    ["BRAND-LED", "Your criteria first", "Financial capacity, experience and background matter when your brand says they matter—not because a generic lead model says so."],
+                    ["INTENT-LED", "Find relevant people", "Use digital interest and behavioral indicators to surface audiences aligned with the opportunity."],
+                    ["INTEREST-LED", "Qualified handoff", "A lead is qualified when they fit the agreed profile and express interest in learning more."],
                   ].map(([value, title, body]) => (
                     <div key={title} className="insight-tile p-7">
-                      <span className="font-display text-4xl font-light tracking-[-0.06em] text-[var(--cobalt)]">{value}</span>
+                      <span className="font-display text-3xl font-light tracking-[-0.06em] text-[var(--cobalt)]">{value}</span>
                       <h3 className="mt-8 font-display text-xl tracking-[-0.03em]">{title}</h3>
                       <p className="mt-3 text-sm leading-6 text-[var(--ink)]/58">{body}</p>
                     </div>
@@ -395,15 +415,14 @@ export default function Home() {
           <div className="container relative z-10">
             <div className="grid items-end gap-8 md:grid-cols-[1fr_0.8fr]">
               <div>
-                <div className="section-label text-[var(--electric)]">Inside the media desk</div>
-                <h2 className="section-title mt-6 max-w-3xl text-white">Better audiences.<br />Sharper execution.</h2>
+                <div className="section-label text-[var(--electric)]">The FranReach model</div>
+                <h2 className="section-title mt-6 max-w-3xl text-white">Intelligence, technology and execution. <em>Connected.</em></h2>
               </div>
               <p className="max-w-lg text-base leading-7 text-white/55 md:justify-self-end">
-                Strategy, buying, audience intelligence, creative coordination, and reporting work as one operating system—without layers of account-management theater.
+                Our proprietary orchestration technology connects the data, systems, channels and workflows behind franchise development—managed by a team focused on turning relevant audiences into qualified interest.
               </p>
             </div>
-
-            <div className="mt-16 grid gap-4 lg:grid-cols-3">
+            <div className="mt-16 grid gap-4 lg:grid-cols-2">
               {capabilities.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -414,10 +433,10 @@ export default function Home() {
                         <Icon className="size-5" strokeWidth={1.7} />
                       </span>
                     </div>
-                    <div className="mt-16">
+                    <div className="mt-12">
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--signal)]">{item.kicker}</p>
-                      <h3 className="mt-3 font-display text-4xl font-light tracking-[-0.05em] text-white">{item.title}</h3>
-                      <p className="mt-5 min-h-[84px] text-sm leading-7 text-white/55">{item.description}</p>
+                      <h3 className="mt-3 font-display text-3xl font-light tracking-[-0.05em] text-white">{item.title}</h3>
+                      <p className="mt-5 text-sm leading-7 text-white/55">{item.description}</p>
                       <div className="mt-8 space-y-3 border-t border-white/10 pt-6">
                         {item.points.map((point) => (
                           <div key={point} className="flex items-center gap-3 text-sm text-white/72">
@@ -433,24 +452,42 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="surface-paper py-24 md:py-32" id="channels">
+          <div className="container">
+            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+              <div>
+                <div className="section-label text-[var(--cobalt)]">One audience. Connected touchpoints.</div>
+                <h2 className="section-title mt-6">A consistent message, wherever people encounter your brand.</h2>
+                <p className="mt-6 text-base leading-7 text-[var(--ink)]/60">
+                  Channel selection is modular. Email and LinkedIn form the core program; paid media can be added where it strengthens reach, repetition and engagement.
+                </p>
+              </div>
+              <div className="grid gap-px overflow-hidden rounded-2xl bg-[var(--ink)]/12 sm:grid-cols-2">
+                {channels.map(([name, description], index) => (
+                  <div key={name} className="insight-tile p-7">
+                    <span className="font-mono text-[10px] tracking-[0.16em] text-[var(--cobalt)]">CHANNEL 0{index + 1}</span>
+                    <h3 className="mt-7 font-display text-2xl tracking-[-0.03em]">{name}</h3>
+                    <p className="mt-3 text-sm leading-6 text-[var(--ink)]/58">{description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="surface-paper py-24 md:py-32" id="about">
           <div className="container">
             <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
               <div>
-                <div className="section-label text-[var(--cobalt)]">The working rhythm</div>
-                <h2 className="mt-6 font-display text-4xl font-light tracking-[-0.055em] md:text-5xl">A media agency that operates like part of your team.</h2>
+                <div className="section-label text-[var(--cobalt)]">From first signal to qualified interest</div>
+                <h2 className="mt-6 font-display text-4xl font-light tracking-[-0.055em] md:text-5xl">One managed operation. Built around your brand.</h2>
                 <p className="mt-6 text-base leading-7 text-[var(--ink)]/60">
-                  Senior operators stay close to the buying, the data, and the decisions. You see what we see, know what changed, and understand the next move.
+                  We manage the connected work, keep performance visible and make sure your team knows when someone is ready to take the next step.
                 </p>
-                <div className="mt-8"><ArrowLink href={BOOKING_URL}>Book a strategy session</ArrowLink></div>
+                <div className="mt-8"><ArrowLink href={BOOKING_URL}>Talk franchise growth</ArrowLink></div>
               </div>
               <div className="process-list border-t border-[var(--ink)]/15">
-                {[
-                  [Compass, "Align", "Set channel roles, audiences, budgets, performance definitions, and the operating cadence."],
-                  [Database, "Refresh", "Update high-intent and buying-signal lists nightly for current campaign use."],
-                  [Target, "Execute", "Buy, launch, pace, test, and optimize media through one accountable desk."],
-                  [Crosshair, "Report live", "Keep spend and performance visible, with plain-language decisions attached."],
-                ].map(([Icon, title, body], index) => {
+                {process.map(([Icon, title, body], index) => {
                   const ItemIcon = Icon as typeof Compass;
                   return (
                     <div key={title as string} className="grid grid-cols-[42px_42px_1fr] gap-4 border-b border-[var(--ink)]/15 py-7 md:grid-cols-[52px_52px_1fr] md:py-9">
@@ -468,28 +505,35 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="proof-section py-20 md:py-24" id="proof">
+        <section className="proof-section py-20 md:py-24" id="intelligence">
           <div className="container">
             <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
               <div>
-                <div className="section-label text-[var(--electric)]">Brand-level experience</div>
-                <h2 className="mt-6 font-display text-4xl font-light leading-[1.02] tracking-[-0.055em] text-white md:text-5xl">Enterprise experience. Built for growing brands.</h2>
+                <div className="section-label text-[var(--electric)]">The technology behind the work</div>
+                <h2 className="mt-6 font-display text-4xl font-light leading-[1.02] tracking-[-0.055em] text-white md:text-5xl">A connected system. A smarter campaign with every cycle.</h2>
               </div>
               <div>
                 <p className="max-w-2xl text-lg leading-8 text-white/62">
-                  Our team has worked at the brand level with major national organizations, bringing that operating discipline to emerging and growing companies without forcing them into an enterprise-agency model.
-                </p>
-                <p className="mt-5 max-w-2xl text-sm leading-7 text-white/42">
-                  Brand-level experience includes work with organizations such as:
+                  FranReach's proprietary technology orchestrates the systems and workflows behind audience intelligence, outreach, paid media and reporting. Instead of managing disconnected tools and isolated campaigns, our team works from one connected operating environment.
                 </p>
                 <div className="brand-proof-grid mt-8">
-                  {["Express Employment Professionals", "Great Clips", "BELFOR", "And other national and growth-stage brands"].map((brand, index) => (
-                    <div key={brand} className="brand-proof-item">
+                  {[
+                    ["CONNECTED", "Campaigns, channels and data work together"],
+                    ["VISIBLE", "Analytics, recommendations and insights in one portal"],
+                    ["ADAPTIVE", "Learnings inform optimization and future campaigns"],
+                  ].map(([label, description], index) => (
+                    <div key={label} className="brand-proof-item">
                       <span className="font-mono text-[9px] text-[var(--electric)]">0{index + 1}</span>
-                      <span className="font-display text-lg tracking-[-0.03em] text-white">{brand}</span>
+                      <span>
+                        <span className="block font-display text-lg tracking-[-0.03em] text-white">{label}</span>
+                        <span className="mt-1 block text-sm leading-6 text-white/48">{description}</span>
+                      </span>
                     </div>
                   ))}
                 </div>
+                <p className="mt-8 max-w-2xl text-sm leading-7 text-white/42">
+                  Campaign performance is not just reported; it is studied. We look for patterns across audiences, messages and channels, carry forward what works, and use those insights to make better decisions over time.
+                </p>
               </div>
             </div>
           </div>
@@ -499,13 +543,12 @@ export default function Home() {
           <div className="container">
             <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
               <div>
-                <div className="section-label text-[var(--electric)]">Built for ambitious media teams</div>
-                <h2 className="section-title mt-6 max-w-3xl text-white">For brands that need execution—not another agency layer.</h2>
+                <div className="section-label text-[var(--electric)]">Who we work with</div>
+                <h2 className="section-title mt-6 max-w-3xl text-white">Built for franchise brands and the people who help them grow.</h2>
               </div>
-              <p className="max-w-sm text-sm leading-6 text-white/48">Designed for growth-stage brands, franchise systems, multi-location operators, and lean in-house marketing teams.</p>
+              <p className="max-w-sm text-sm leading-6 text-white/48">A dedicated franchise development partner for brands expanding across the United States.</p>
             </div>
-
-            <div className="mt-14 grid gap-5 lg:grid-cols-3">
+            <div className="mt-14 grid gap-5 lg:grid-cols-2">
               {audiences.map((audience, index) => (
                 <article key={audience.title} className="audience-card group">
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -518,7 +561,7 @@ export default function Home() {
                   <div className="p-7">
                     <h3 className="font-display text-3xl font-light tracking-[-0.045em] text-white">{audience.title}</h3>
                     <p className="mt-4 min-h-[72px] text-sm leading-6 text-white/53">{audience.body}</p>
-                    <div className="mt-7"><ArrowLink href={BOOKING_URL}>Book a strategy session</ArrowLink></div>
+                    <div className="mt-7"><ArrowLink href={BOOKING_URL}>Talk franchise growth</ArrowLink></div>
                   </div>
                 </article>
               ))}
@@ -530,7 +573,7 @@ export default function Home() {
           <div className="container grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
             <div>
               <div className="section-label text-[var(--cobalt)]">Straight answers</div>
-              <h2 className="section-title mt-6">Clear pricing. No mystery.</h2>
+              <h2 className="section-title mt-6">How FranReach works.</h2>
             </div>
             <div className="border-t border-[var(--ink)]/16">
               {faqs.map((faq, index) => {
@@ -565,21 +608,22 @@ export default function Home() {
           <div className="absolute -right-24 -top-24 size-[440px] rounded-full bg-[var(--electric)]/30 blur-[100px]" />
           <div className="container relative z-10">
             <div className="max-w-5xl">
-              <div className="section-label text-white/60">Turn market activity into business action</div>
+              <div className="section-label text-white/60">Your next franchise operators are out there</div>
               <h2 className="mt-7 font-display text-5xl font-light leading-[0.98] tracking-[-0.065em] md:text-7xl lg:text-[92px]">
-                Identify real demand. Turn it into measurable growth.
+                Let's find the right people to grow your brand.
               </h2>
               <div className="mt-10 flex flex-col gap-5 md:flex-row md:items-center">
                 <a className="button button-light" href={BOOKING_URL} target="_blank" rel="noreferrer">
-                  Book a strategy session <ArrowRight className="size-4" />
+                  Talk franchise growth <ArrowRight className="size-4" />
                 </a>
-                <p className="max-w-sm text-sm leading-6 text-white/62">We’ll look at where demand may already be forming, how your audiences are built, and how to connect intelligence to measurable activation.</p>
+                <p className="max-w-sm text-sm leading-6 text-white/62">
+                  Tell us what your brand needs in its next operators. We'll show you how FranReach can build and manage the acquisition program.
+                </p>
               </div>
             </div>
           </div>
         </section>
       </main>
-
       <SiteFooter />
     </div>
   );
