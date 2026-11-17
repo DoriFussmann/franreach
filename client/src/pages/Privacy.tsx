@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <LegalPage title="Privacy Policy" documentTitle="Privacy Policy | FranReach">
       <p>
-        This Privacy Policy explains how InMarketLabs, LLC ("FranchiseReach," "we," "us") handles information in connection with this website (the "Site"). It covers this Site only. Data we process on behalf of clients under service agreements is governed by those agreements.
+        This Privacy Policy explains how InMarketLabs, LLC ("FranReach," "we," "us") handles information in connection with this website (the "Site"). It covers this Site only. Data we process on behalf of clients under service agreements is governed by those agreements.
       </p>
       <LegalSection title="Information we collect">
         <p>This Site does not have user accounts or contact forms, and we do not use cookies, analytics tools, or advertising pixels on it. The limited information involved is:</p>
